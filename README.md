@@ -54,32 +54,32 @@ scp docker-compose.yml nginx.conf username@IP:/home/username/
 
 Для запуска проекта находясь в директории с ```docker-compose.yaml``` выполняем:
 ```
-docker-compose up
+sudo docker-compose up -d --build 
 ```
 
 После сборки контейнеров:
 ```
-sudo docker-compose exec web python manage.py makemigrations
+sudo docker-compose exec backend python manage.py makemigrations
 ```
 ```
-sudo docker-compose exec web python manage.py migrate
+sudo docker-compose exec backend python manage.py migrate
 ```
 ```
-sudo docker-compose exec web python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 ```
-sudo docker-compose exec web python manage.py collectstatic --no-input
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
 ### Команды для заполнения базы данными:
 
 Сброс БД
 ```
-sudo docker-compose exec web python manage.py flush
+sudo docker-compose exec backend python manage.py flush
 ```
 Запускаем терминал
 ```
-sudo docker-compose exec web bash
+sudo docker-compose exec backend bash
 ```
 Выполнить в открывшемся терминале:
 ```
@@ -99,7 +99,7 @@ exit
 ```
 Заполняем базу данными
 ```
-sudo docker-compose exec web python manage.py loaddata ingredients.json
+sudo docker-compose exec backend python manage.py loaddata ingredients.json
 ```
 
 
