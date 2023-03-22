@@ -130,5 +130,5 @@ USE_L10N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['http://51.250.26.33']
+CSRF_TRUSTED_ORIGINS = ['https://djifrost.sytes.net']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,10 +1,10 @@
-## Проект [Foodgram](http://51.250.26.33)
+## Проект [Foodgram](https://djifrost.sytes.net)
 
 ![foodgram](https://github.com/IgorArefev/foodgram-project-react/actions/workflows/main.yml/badge.svg?branch=master)
 
 Foodgram - продуктовый помощник с базой кулинарных рецептов.
 
-[Документация к API](http://51.250.26.33/api/docs/)
+[Документация к API](https://djifrost.sytes.net/api/docs/)
 
 ### Стек технологий:
 - Python 3
