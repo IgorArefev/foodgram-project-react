@@ -28,16 +28,10 @@ DB_PORT=
 ## КАК ЗАПУСТИТЬ ПРОЕКТ:
 Для автоматизации развертывания ПО на боевых серверах используется среда виртуализации Docker, а также Docker-compose - инструмент для запуска многоконтейнерных приложений. Docker позволяет «упаковать» приложение со всем его окружением и зависимостями в контейнер, который может быть перенесён на любую Linux -систему, а также предоставляет среду по управлению контейнерами. Таким образом, для разворачивания серверного ПО достаточно чтобы на сервере с ОС семейства Linux были установлены среда Docker и инструмент Docker-compose.
 ```
-sudo apt install curl
+sudo apt install docker.io
 ```
 ```
-curl -fsSL https://get.docker.com -o get-docker.sh
-```
-```
-sh get-docker.sh
-```
-```
-sudo apt-get install docker-compose-plugin
+sudo apt install docker-compose
 ```
 
 Так же необходимо установить PostgreSQL
@@ -71,35 +65,10 @@ sudo docker-compose exec backend python manage.py createsuperuser
 sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 
-### Команды для заполнения базы данными:
+### Команда для заполнения базы данными:
 
-Сброс БД
 ```
-sudo docker-compose exec backend python manage.py flush
-```
-Запускаем терминал
-```
-sudo docker-compose exec backend bash
-```
-Выполнить в открывшемся терминале:
-```
-python3 manage.py shell
-```
-```
-from django.contrib.contenttypes.models import ContentType
-```
-```
-ContentType.objects.all().delete()
-```
-```
-quit()
-```
-```
-exit
-```
-Заполняем базу данными
-```
-sudo docker-compose exec backend python manage.py loaddata ingredients.json
+sudo docker-compose exec backend python manage.py import_csv
 ```
 
 
