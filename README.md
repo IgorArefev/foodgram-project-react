@@ -2,7 +2,7 @@
 
 ![foodgram](https://github.com/IgorArefev/foodgram-project-react/actions/workflows/main.yml/badge.svg?branch=master)
 
-Foodgram - продуктовый помощник с базой кулинарных рецептов.
+Foodgram - продуктовый помощник с базой кулинарных рецептов!
 
 [Документация к API](https://djifrost.sytes.net/api/docs/)
 
