@@ -6,6 +6,8 @@ Foodgram - продуктовый помощник с базой кулинар�
 
 [Документация к API](https://djifrost.sytes.net/api/docs/)
 
+[Админка](https://djifrost.sytes.net/admin/) -- User: admin Pass: AdminAdmin
+
 ### Стек технологий:
 - Python 3
 - Django
