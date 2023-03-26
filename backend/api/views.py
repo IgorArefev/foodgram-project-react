@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -19,7 +20,6 @@ from recipes.models import (
     ShoppingList,
     Tag
 )
-from users.models import User
 
 from .filters import IngredientSearchFilter, RecipeFilter
 from .permissions import IsAuthorOrReadOnlyPermission
@@ -34,6 +34,8 @@ from .serializers import (
     TagSerializer
 )
 from .utils import get_shopping_cart
+
+User = get_user_model()
 
 
 class CustomUserViewSet(UserViewSet):
