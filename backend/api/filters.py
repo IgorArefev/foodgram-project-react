@@ -15,7 +15,7 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    tags = filters.CharFilter(field_name='tags__slug')
+    tags = filters.NumberFilter(field_name='tags__slug')
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_cart'
@@ -23,7 +23,7 @@ class RecipeFilter(FilterSet):
 
     class Meta:
         model = Recipe
-        fields = ('tags', 'author',)
+        fields = ('tags', 'author', 'is_favorited', 'is_in_shopping_cart')
 
     def _get_queryset(self, queryset, name, value, model):
         if value:
