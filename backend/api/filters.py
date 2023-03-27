@@ -17,8 +17,6 @@ class IngredientSearchFilter(FilterSet):
 class RecipeFilter(FilterSet):
     tags = filters.AllValuesMultipleFilter(
         field_name='tags__slug',
-        distinct=True,
-        conjoined=True
     )
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
@@ -33,7 +31,7 @@ class RecipeFilter(FilterSet):
         selected_tags_count = len(self.form.cleaned_data['tags'])
         if selected_tags_count == 0:
             return queryset.none()
-        return super().filter_queryset(queryset)
+        return queryset
 
     def _get_queryset(self, queryset, name, value, model):
         if value:
