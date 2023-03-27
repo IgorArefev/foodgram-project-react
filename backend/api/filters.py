@@ -15,7 +15,9 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    tags = filters.ModelChoiceFilter(
+    tags = filters.ModelMultipleChoiceFilter(
+        field_name='tags__slug',
+        to_field_name='slug',
         queryset=Tag.objects.all()
     )
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
@@ -25,7 +27,7 @@ class RecipeFilter(FilterSet):
 
     class Meta:
         model = Recipe
-        fields = ('tags', 'is_favorited', 'is_in_shopping_cart')
+        fields = ('tags', 'author', 'is_favorited', 'is_in_shopping_cart')
 
     def _get_queryset(self, queryset, name, value, model):
         if value:
