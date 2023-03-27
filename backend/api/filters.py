@@ -31,7 +31,7 @@ class RecipeFilter(FilterSet):
         selected_tags_count = len(self.form.cleaned_data['tags'])
         if selected_tags_count == 0:
             return queryset.none()
-        return queryset
+        return super().filter_queryset(queryset)
 
     def _get_queryset(self, queryset, name, value, model):
         if value:
