@@ -33,5 +33,9 @@ class User(AbstractUser):
         verbose_name_plural = 'Пользователи'
         ordering = ('id',)
 
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        return super(User, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.username
