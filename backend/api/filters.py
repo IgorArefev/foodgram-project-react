@@ -25,6 +25,13 @@ class RecipeFilter(FilterSet):
         model = Recipe
         fields = ('author', )
 
+    def filter(self, queryset, *args, **kwargs):
+        queryset = super().filter(queryset, *args, **kwargs)
+        tags = kwargs.get('tags')
+        if not tags:
+            return queryset.none()
+        return queryset
+
     def _get_queryset(self, queryset, name, value, model):
         if value:
             return queryset.filter(**{FILTER_USER[model]: self.request.user})
