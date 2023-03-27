@@ -1,6 +1,6 @@
 from django_filters.rest_framework import FilterSet, filters
 
-from recipes.models import Ingredient, Recipe, Tag
+from recipes.models import Ingredient, Recipe
 
 FILTER_USER = {'favorites': 'favorites__user',
                'shop_list': 'shop_list__user'}
