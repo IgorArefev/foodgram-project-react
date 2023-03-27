@@ -15,7 +15,6 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    author = filters.NumberFilter(field_name='author__id')
     tags = filters.CharFilter(field_name='tags__slug')
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
