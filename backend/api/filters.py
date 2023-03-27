@@ -15,7 +15,11 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    tags = filters.AllValuesMultipleFilter(field_name='tags__slug')
+    tags = filters.AllValuesMultipleFilter(
+        field_name='tags__slug',
+        distinct=True,
+        conjoined=True
+    )
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_cart'
@@ -25,12 +29,11 @@ class RecipeFilter(FilterSet):
         model = Recipe
         fields = ('author', )
 
-    def filter(self, queryset, *args, **kwargs):
-        queryset = super().filter(queryset, *args, **kwargs)
-        tags = kwargs.get('tags')
-        if tags is None or not tags:
+    def filter_queryset(self, queryset):
+        selected_tags_count = len(self.form.cleaned_data['tags'])
+        if selected_tags_count == 0:
             return queryset.none()
-        return queryset
+        return super().filter_queryset(queryset)
 
     def _get_queryset(self, queryset, name, value, model):
         if value:
