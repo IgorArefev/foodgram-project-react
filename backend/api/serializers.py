@@ -95,6 +95,9 @@ class RecipeSerializer(serializers.ModelSerializer):
             'cooking_time'
         )
 
+    def get_tags(self, obj):
+        return self._obj_exists(obj, Tag)
+
     def get_is_favorited(self, obj):
         return self._obj_exists(obj, Favorite)
 
