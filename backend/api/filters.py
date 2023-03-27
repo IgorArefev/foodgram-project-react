@@ -3,8 +3,7 @@ from django_filters.rest_framework import FilterSet, filters
 from recipes.models import Ingredient, Recipe
 
 FILTER_USER = {'favorites': 'favorites__user',
-               'shop_list': 'shop_list__user',
-               'tags': 'tags__slug'}
+               'shop_list': 'shop_list__user'}
 
 
 class IngredientSearchFilter(FilterSet):
@@ -16,7 +15,7 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    tags = filters.BooleanFilter(method='filter_tags')
+    tags = filters.CharFilter(method='tags__slug')
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_cart'
@@ -30,9 +29,6 @@ class RecipeFilter(FilterSet):
         if value:
             return queryset.filter(**{FILTER_USER[model]: self.request.user})
         return queryset
-
-    def filter_tags(self, queryset, name, value):
-        return self._get_queryset(queryset, name, value, 'tags')
 
     def filter_is_favorited(self, queryset, name, value):
         return self._get_queryset(queryset, name, value, 'favorites')
