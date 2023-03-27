@@ -15,7 +15,7 @@ class IngredientSearchFilter(FilterSet):
 
 
 class RecipeFilter(FilterSet):
-    tags = filters.AllValuesMultipleFilter(method='filter')
+    tags = filters.AllValuesMultipleFilter(field_name='tags__slug')
     is_favorited = filters.BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = filters.BooleanFilter(
         method='filter_is_in_shopping_cart'
@@ -28,7 +28,7 @@ class RecipeFilter(FilterSet):
     def filter(self, queryset, *args, **kwargs):
         queryset = super().filter(queryset, *args, **kwargs)
         tags = kwargs.get('tags')
-        if not tags:
+        if tags is None or not tags:
             return queryset.none()
         return queryset
 
